@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   #match ':controller(/:action(/:id(.:format)))', :via => :all
   resources :events do
     resources :attendees, :controller => 'event_attendees'
+    resource :location, :controller => 'events'
   end
 end
