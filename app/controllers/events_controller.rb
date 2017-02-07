@@ -8,11 +8,12 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @location = @event.build_location
+    #@location = @event.build_location
   end
 
   def create
     @event = Event.new(event_params)
+    #@location = @event.build_location(location_params)
     if @event.save
       redirect_to event_path(@event)
     else
@@ -29,7 +30,7 @@ class EventsController < ApplicationController
 
   def edit
     #@event = Event.find(params[:id])
-    @location = @event.location
+    #@location = @event.location
   end
 
   def update
@@ -52,14 +53,14 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit( :name, :description, :category_id, :location_attributes => [:id, :name, :_destroy])
+    params.require(:event).permit( :name, :description, :category_id, :location_attributes => [])
   end
 
   def set_event
-    if params[:id]
       @event = Event.find(params[:id])
-    else
-      @event = Event.find(params[:event_id])
-    end
+  end
+
+  def location_params
+    params.require(:location).permit(:name)
   end
 end

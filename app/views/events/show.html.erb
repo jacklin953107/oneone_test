@@ -5,7 +5,6 @@
 
 <% if @event.location %>
     <p><%= @event.location.name %></p>
-    <p><%= link_to "edit", edit_event_location_path(@event) %></p>
 <% end %>
 
 <p><%= link_to 'Back to index', events_path %></p>
